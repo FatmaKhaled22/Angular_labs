@@ -1,0 +1,81 @@
+<div class="card m-4 text-center">
+    <div class="card-header">
+      Sign Up with Reactive
+    </div>
+    <div class="card-body">
+    
+      <form [formGroup]="userForm" (ngSubmit)="addUser()">
+
+        <div class="form-group row mb-2">
+          <label for="fullName" class="col-md-2 col-form-label">Full Name</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" id="fullName" placeholder="Full Name (required)" name='fullName'
+            formControlName="fullName"
+            [ngClass]="{'is-invalid':(fullName?.touched||fullName?.dirty) && fullName?.invalid}" />
+            <span class="invalid-feedback">
+              <span *ngIf="fullName?.errors?.['required']">Please enter your first name</span>
+              <span *ngIf="fullName?.errors?.['minlength']">First Name is must be longer than 5 characters</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="emailId">Email</label>
+            <div class="col-md-8">
+                <input class="form-control" id="emailId" type="email" placeholder="Email (required)" name="email"
+                formControlName="email" [ngClass]="{'is-invalid':(email?.touched||email?.dirty) && email?.invalid}"/>
+                <span class="invalid-feedback">
+                    <span *ngIf="email?.errors?.['required']">Please enter your email</span>
+                    <span *ngIf="email?.errors?.['pattern']">Please enter valied email</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="passwordId">Password</label>
+            <div class="col-md-8">
+                <input class="form-control" id="passwordId"  placeholder="Password (required)" name="password"
+                formControlName="password" type="password" [ngClass]="{'is-invalid':(password?.touched||password?.dirty) && password?.invalid}"/>
+                <span class="invalid-feedback">
+                    <span *ngIf="password?.errors?.['required']">Please enter your password</span>
+                    <span *ngIf="password?.errors?.['minlength']">Password is must be longer than 6 characters</span>
+                </span>
+            </div>
+        </div>
+      
+        <!-- Phone Number  -->
+        <div formArrayName="phoneNum" class="form-group row mb-2">
+          <ng-container *ngFor="let add of phoneNum.controls;let i=index">
+            <ng-container [formGroupName]="i">
+              <label class="col-md-2 col-form-label" for="phoneNumId">Phone Number</label>
+              <div class="col-md-8 d-flex">
+                <input type="text" class="form-control" id="phoneNumId" placeholder="Phone Number(required)" formControlName="phone">
+                <button class="btn btn-danger ms-2" (click)="removePhone(i)">Remove</button>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="addPhone()">Add Phone</button><br>
+
+
+        <div formArrayName="address" >
+          <label class="col-md-2 col-form-label" for="AddressId">Address => </label>
+          city name :
+          <input type="text" class="rounded border p-1" id="cityId" placeholder="City" formControlName="city">
+          code :
+          <input type="text" class="rounded border p-1" id="codeId" placeholder="Code" formControlName="code">
+          street :
+          <input type="text" class="rounded border p-1" id="streetId" placeholder="Street" formControlName="street">
+        </div>
+  
+        <br>
+        <button type="submit" class="btn btn-success" [disabled]="userForm.invalid">Submit</button>
+      </form>
+  
+  
+    </div>
+</div>
+   
+
+
+<!-- <h2>{{userForm.value | json}}</h2> -->

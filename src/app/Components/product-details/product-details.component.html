@@ -1,0 +1,52 @@
+<div class="container">
+
+  <div class="col-md-5 mx-auto m-4">
+    <div class="small fw-light p-2"><h5>Search with Material :</h5></div>
+    <div class="input-group">
+      <input class="form-control border-end-0 border rounded-pill me-2" type="text" id="example-search-input" #searchVal>
+      <span class="input-group-append">
+        <button class="btn btn-outline-secondary border-bottom-0 border rounded-pill ms-n5" type="button" 
+          (click)="searchPrdWithMaterail(searchVal.value)"> <i class="bi bi-search"></i>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <ul>
+    <li *ngFor="let prd of prdsAfterSearch">{{prd.name}}</li>
+  </ul>
+
+  <!-- ******* --------------------------------------------------- ******* -->
+    <div class="row mb-4">
+      <div class="col-sm-4">
+  
+        <h3 class="m-3">
+          <ng-container [ngSwitch]="product?.quantity">
+            <ng-container *ngSwitchCase="0"><h3 class="text-danger">Out Of Stock</h3></ng-container>
+            <ng-container *ngSwitchCase="1">Last One Item!!</ng-container>
+            <ng-container *ngSwitchCase="2">Last 2 Item!!</ng-container>
+            <ng-container *ngSwitchCase="3">Last 3 Item!!</ng-container>
+            <ng-container *ngSwitchDefault>In Stock</ng-container>
+          </ng-container>
+        </h3>
+        <img [src]="product?.PrdimgURL" class="img-fluid rounded">
+      </div>
+
+      <div class="card text-bg-light m-5" style="max-width: 35rem;">
+        <div class="card-header"><h2 class="card-title">Product Details</h2></div>
+        <div class="card-body">
+          <h3 class="card-title">{{product?.name}}</h3>
+          <p class="card-title">{{product?.Details}}</p>
+          <h5 class="card-title">Price : {{product?.price | currency}}</h5>
+          <h5 class="card-text">Material : {{product?.Material}}</h5>
+        </div>
+      </div>
+      
+    </div>
+    <div class="d-flex justify-content-center" role="group" aria-label="Basic example">
+      <button class="border-0" (click)="previousFunc()" [disabled]="prdID==productsIDS[0]"><<<i class="fa-solid fa-angles-left fs-4 text-primary" ></i></button>
+      <button class="border-0" (click)="nextFunc()" [disabled]="prdID==productsIDS[productsIDS.length-1]">>><i class="fa-solid fa-angles-right fs-4" ></i></button>
+    </div>
+  <button ctype="button" class="btn btn-primary btn-lg mb-3" (click)="backToProducts()">Back</button>
+</div>
+

@@ -1,0 +1,59 @@
+<!-- test add data -->
+<div class="text-center m-5">
+    <button (click)="addProduct()" class="btn btn-primary">Add</button>
+</div>
+
+
+<!-- 
+<div class="row container-fluid">
+    <div class="col-md-6 offset-3">
+        <form class="form-control m-5 p-5" #formProduct="ngForm" (ngSubmit)="query === '0' ? addProduct() : updateProduct()" >
+            
+            <div class="input-group mb-3">
+                <input required minlength="3" #name="ngModel" type="text" name="name" [(ngModel)]="product.name" class="form-control" placeholder="Name" aria-label="name" aria-describedby="basic-addon1"
+                [ngClass]="{'is-invalid':(name.touched || name.dirty) && name.invalid}">
+                <span class="invalid-feedback">
+                    <span *ngIf="name.errors?.['required']">Plaese Enter Your name</span>
+                    <span *ngIf="name.errors?.['minlength']">Product must be longer than 3 characters</span>
+                </span>
+            </div>
+
+            <div class="input-group mb-3">
+                <input required #price="ngModel" type="text" class="form-control" [(ngModel)]="product.price" name="price" placeholder="Price" aria-label="price" aria-describedby="basic-addon1"
+                [ngClass]="{'is-invalid':(price.touched || price.dirty) && price.invalid}">
+                <span class="invalid-feedback">
+                    <span *ngIf="price.errors?.['required']">Plaese Enter Your price</span>
+                </span>
+            </div>
+
+            <div class="input-group mb-3">
+                <input required minlength="3" #Details="ngModel" type="text" class="form-control" [(ngModel)]="product.Details" name="Details" placeholder="Details" aria-label="Details" aria-describedby="basic-addon1"
+                [ngClass]="{'is-invalid':(Details.touched || Details.dirty) && Details.invalid}">
+                <span class="invalid-feedback">
+                    <span *ngIf="Details.errors?.['required']">Plaese Enter Your Details</span>
+                    <span *ngIf="Details.errors?.['minlength']">Details must be longer than 3 characters</span>
+                </span>
+            </div>
+
+            <div class="input-group mb-3">
+                <input required minlength="3" #img="ngModel" type="text" class="form-control" [(ngModel)]="product.img" name="img" placeholder="ImgURL" aria-label="img" aria-describedby="basic-addon1"
+                [ngClass]="{'is-invalid':(img.touched || img.dirty) && img.invalid}">
+                <span class="invalid-feedback">
+                    <span *ngIf="img.errors?.['required']">Plaese Enter Your img</span>
+                </span>
+            </div>
+
+            <div class="input-group mb-3">
+                <input required minlength="3" #category="ngModel" type="text" class="form-control" [(ngModel)]="product.category" name="category" placeholder="category" aria-label="category" aria-describedby="basic-addon1"
+                [ngClass]="{'is-invalid':(category.touched || category.dirty) && category.invalid}">
+                <span class="invalid-feedback">
+                    <span *ngIf="category.errors?.['required']">Plaese Enter Your Category</span>
+                </span>
+            </div>
+
+            <button [disabled]="formProduct.invalid"  class="btn btn-primary text-right"> {{query === "0" ? 'Add Product' : 'Edit Product'}} 
+            </button>
+
+        </form>
+    </div>
+</div> -->

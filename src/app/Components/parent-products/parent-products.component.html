@@ -1,0 +1,39 @@
+<div class="container-fluid text-center">
+    <div class="row m-5">
+        <!-- ############################################ -->
+           <h3>Date : {{todayDate|date:'fullDate'}}</h3>
+           <h6>Credit Card Number : {{ CreditCardNumber}}</h6>
+           <h6>Credit Card Number : {{ CreditCardNumber | creditCard }}</h6>
+        <!-- ############################################ -->
+        
+        <div class="text-center ">
+            <h5 class = "col-md-2"> Filter By : </h5>
+            <div class = "col-md-3"><input type="text" class="form-control" [(ngModel)]="listFilter"> </div>
+        </div>
+    </div>
+
+       
+    <table class="table container mb-5">
+        <thead>
+            <tr class="text-danger">
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Price</th>
+                <th scope="col">Product Quantity</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prod of ProductCart">
+            <ng-container *ngIf="prod.quantity">
+                <th scope="row">{{ prod.name }}</th>
+                <th scope="row">{{ prod.price }}</th>
+                <th scope="row">{{ prod.quantity }}</th>
+                <th scope="row">{{ prod.quantity * prod.price}}</th>
+            </ng-container>
+          </tr>
+        </tbody>
+    </table>
+    
+    <app-products [listFilterChild]="listFilter" (CartProducts)="addToCart($event)"></app-products>
+
+</div>

@@ -1,0 +1,65 @@
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-4 text-center">
+            <!-- <div class="d-flex flex-row">
+                <div>
+                    <a class="navbar-brand" href="#">
+                        <img img [src]="storedata.Logo" alt="" width="100" height="90" *ngIf="IsPurshased">
+                    </a>
+                    <h1>{{storedata.Name}}</h1>
+                </div>
+                <div class="m-3">
+                    <p>Branches : </p>
+                    <ul>
+                        <i *ngFor="let i of storedata.branches">{{i}}--</i>
+                    </ul>
+                </div>
+            </div>
+            <button class="btn btn-primary" (click)="toggleImage()">
+                {{IsPurshased?'Hide':'Show'}}
+            </button> -->
+            <div *ngIf="!IsPurshased" class="text-danger">
+                <p>Thanks for purchasing from our Store {{ClientName}} Entered.</p>
+            </div>
+            <div class="m-3">  
+                Select Product :  
+                <select class="form-select m-2" name="cat" [(ngModel)]="selectcat">  
+                    <option *ngFor="let cat of Prodcategory" [value]="cat.Id"> {{cat.Name}} </option>  
+                </select> 
+            </div>  
+        </div>
+        
+        <!-- ------------------------------------------------------------------------------ -->
+        
+        <div class="row row-cols-3 col-8">
+            <!-- <div class="col"> -->
+                <div class="card text-center m-2" style="width: 18rem;" [class.d-none]="selectcat!=item.categoryID" *ngFor="let item of filteredProducts" [ngClass]="{'bg-warning':item.quantity<2}" CardStyle="20px">
+                    <img [src]="item.PrdimgURL" class="card-img-top mt-2" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.name}}</h5>
+                        <p class="card-text">Quantity : {{item.quantity}}</p>
+                        <p class="card-text">Price : {{item.price | currency}}</p>
+                        <div class="d-flex  justify-content-around">
+                            <button (click)="decrease(item)" class="btn btn-primary" [disabled]="!item.quantity"> - </button>
+                            <h3>{{item.quantity}}</h3>
+                            <button (click)="increase(item)" class="btn btn-primary"> + </button>
+                        </div>
+                        <!-- <button class="btn btn-danger" [disabled]="item.quantity == 0" (click)="buyProduct(item)"> Add to Cart <i
+                        class="bi bi-cart-plus"></i></button> -->
+                        <button class="btn btn-danger mt-3" (click)="cartHandling(item)" [disabled]="!item.quantity">
+                            {{item.IsPurchased && item.quantity?'Remove From Cart':'Add To Cart'}}
+                            <i class="bi bi-cart-plus"></i>
+                        </button><br>
+                        <button class="btn btn-primary mt-3" (click)="prdDetails(item.id)">Details</button>
+                        <div>
+                            <ng-container *ngIf="item.quantity<=1; else outOfStockVar">In Stock</ng-container>
+                            <!-- template reference -->
+                            <ng-template #outOfStockVar>Out OF Stock</ng-template>
+                        </div>
+                    </div>
+                </div>
+            <!-- </div> -->
+        </div>
+    </div>
+        
+</div>
